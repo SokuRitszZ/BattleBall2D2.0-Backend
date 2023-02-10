@@ -1,13 +1,21 @@
-import express from "express";
+import express, { Express } from "express";
+import initController from "./controllers";
+import initMW from "./mw";
 
 const server = express();
 
-const router = express.Router();
+init(server);
 
-server.get("/", async (req, res) => {
-  res.end("Hello NodeJS Express");
-});
+function init(server: Express) {
+  // 一定要先加载中间件
+  initMW(server);
+  // 然后才加载路由
+  initController(server);
 
-server.listen(8080, async () => {
-  console.log(`server listen at port ${8080}`);
-});
+  server.listen(8080, async () => {
+    console.log(`server listen at port ${8080}...`);
+  });
+}
+
+
+export default server;
