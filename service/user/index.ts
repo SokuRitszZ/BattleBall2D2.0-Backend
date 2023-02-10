@@ -1,7 +1,8 @@
-import R from "../../utils/R";
+import updateAvatar from "./avatar";
 import getInfo from "./get_info";
 import login from "./login";
 import register from "./register";
+import formidable from 'formidable';
 
 class UserService {
   public register(
@@ -25,11 +26,11 @@ class UserService {
     return getInfo(id);
   }
 
-  public avatar(params: {
-    id: string;
-    blob: Blob,
-  }) {
-    return R.ok({});
+  public avatar(
+    id: string,
+    file: formidable.File,
+  ) {
+    return updateAvatar(id, file);
   }
 }
 

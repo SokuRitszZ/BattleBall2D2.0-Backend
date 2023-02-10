@@ -11,7 +11,7 @@ function init(server: Express) {
   initMW(server);
   // 然后才加载路由
   initController(server);
-
+  
   server.listen(8080, async () => {
     console.log(`server listen at port ${8080}...`);
   });

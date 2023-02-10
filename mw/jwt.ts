@@ -7,7 +7,7 @@ function useJwt() {
     secret: JWT_SECRETKEY,
     algorithms: ["HS256"],
   }).unless({
-    path: ["/api/user/login", "/api/user/register"],
+    path: ["/api/user/login", "/api/user/register", "/static"],
   });
 }
 

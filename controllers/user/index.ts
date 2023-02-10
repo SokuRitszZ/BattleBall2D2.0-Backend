@@ -1,4 +1,5 @@
 import { Router } from "express";
+import formidable from "formidable";
 import hasNull from "../../utils/hasNull";
 import R from "../../utils/R";
 import trimAll from "../../utils/trimAll";
@@ -54,7 +55,14 @@ userController.get("/get_info", async (req, res) => {
 });
 
 userController.post("/avatar", async (req, res) => {
-  res.end("/user/avatar");
+  // @ts-ignore
+  const { id } = req.auth;
+  const form = new formidable.IncomingForm();
+  form.parse(req, async (err, field, file) => {
+    if (err) return res.json(R.fail(R.PARAM_ERR, Error("上传错误")));
+    // @ts-ignore
+    return res.json(await service.avatar(id, file["img"]));
+  });
 });
 
 export default userController;
