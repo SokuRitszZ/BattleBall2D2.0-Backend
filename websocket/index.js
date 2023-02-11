@@ -1,7 +1,7 @@
 const ws = require("nodejs-websocket");
 import jwt from "jsonwebtoken";
 import { JWT_SECRETKEY } from "../config.json";
-
+import createSocketServer from "./SocketServer";
 
 function initWS() {
   console.log("WebSocket server listen at port 3000...");
@@ -11,15 +11,7 @@ function initWS() {
       console.log("New Connection");
       try {
         jwt.verify(token, JWT_SECRETKEY);
-        conn.on("text", (str) => {
-          console.log(`Received ${str}`);
-          send(conn, {
-            event: "msg",
-            data: {
-              msg: `Received ${str}`,
-            },
-          });
-        });
+        createSocketServer(conn, token);
         conn.on("error", (err) => {});
         conn.on("close", (code, reason) => {
           console.log("Connection closed");
@@ -39,11 +31,16 @@ function initWS() {
   return server;
 }
 
-function send(conn, data) {
-  conn.sendText(JSON.stringify(data));
+function send(conn, event, data) {
+  conn.sendText(JSON.stringify({ event, data }));
 }
 
 module.exports = {
+  initWS,
+  send,
+};
+
+export {
   initWS,
   send,
 };
