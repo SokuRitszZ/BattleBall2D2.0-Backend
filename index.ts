@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import initController from "./controllers";
 import initMW from "./mw";
+const { initWS } = require("./websocket");
 
 const server = express();
 
@@ -11,6 +12,8 @@ function init(server: Express) {
   initMW(server);
   // 然后才加载路由
   initController(server);
+  // ws 
+  initWS();
   
   server.listen(8080, async () => {
     console.log(`server listen at port ${8080}...`);
