@@ -32,6 +32,7 @@ function initWS() {
 }
 
 function send(conn, event, data) {
+  // console.log(event, data);
   conn.sendText(JSON.stringify({ event, data }));
 }
 

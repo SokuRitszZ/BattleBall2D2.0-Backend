@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { broadCastAll, typeSocket } from "./SocketServer";
+import { broadCastAll, typeSocket } from "../SocketServer";
 
 function ChatService(socket: typeSocket, paths: string[], data: any) {
   if (!paths.length) return ;
