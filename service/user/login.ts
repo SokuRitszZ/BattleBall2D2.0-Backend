@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { PASSWORD_SECRETKEY, JWT_SECRETKEY } from "../../config.json";
+import { PASSWORD_SECRETKEY, JWT_SECRETKEY, TIMEOUT_JWT } from "../../config.json";
 import jwt from "jsonwebtoken";
 import User from "../../model/user/db";
 import R from "../../utils/R";
@@ -23,7 +23,7 @@ async function login(name: string, password: string) {
     const token = jwt.sign(
       { id: user.getDataValue("id"), },
       JWT_SECRETKEY,
-      { expiresIn: 3 * 60 * 1, }
+      { expiresIn: TIMEOUT_JWT, }
     );
 
     return R.ok({ token });

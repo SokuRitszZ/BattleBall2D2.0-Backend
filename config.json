@@ -5,5 +5,6 @@
     "http://localhost:8080",
     "https://app3495.acapp.acwing.com.cn:8001"
   ],
-  "mode": 0
+  "mode": 0,
+  "TIMEOUT_JWT": 1209600
 }
