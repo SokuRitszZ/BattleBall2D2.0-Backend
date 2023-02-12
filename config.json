@@ -1,11 +1,15 @@
 {
   "JWT_SECRETKEY": "fjhfhjeq;lfkgnfbjknlfwlnklefgbrowrp;fenlvfb jfnkldvbnklv krgbnpkef v hkro jvldwrvouipendvkfb suoivdnw",
   "PASSWORD_SECRETKEY": "beoio:POWJIEHNBFJK vwiownefboN:B;oeif;FBEIOJHNBGRWIJGBNKLWEFJKWB FNB WEJFIWEJFIOWFHEGBWRBNV KLNLV",
-  "host": [
+  "HOST": [
     "http://localhost:8080",
     "https://app3495.acapp.acwing.com.cn:8001"
   ],
   "mode": 0,
   "TIMEOUT_JWT": 1209600,
-  "MSG_MAX": 40
+  "MSG_MAX": 40,
+  "PORT": [
+    8080,
+    8001
+  ]
 }

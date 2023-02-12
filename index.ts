@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import initController from "./controllers";
 import initMW from "./mw";
+import { PORT, mode } from "./config.json";
 const { initWS } = require("./websocket");
 
 const server = express();
@@ -15,8 +16,8 @@ function init(server: Express) {
   // ws 
   initWS();
   
-  server.listen(8080, async () => {
-    console.log(`server listen at port ${8080}...`);
+  server.listen(PORT[mode], async () => {
+    console.log(`server listen at port ${PORT[mode]}...`);
   });
 }
 
