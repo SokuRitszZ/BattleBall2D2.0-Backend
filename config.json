@@ -6,5 +6,6 @@
     "https://app3495.acapp.acwing.com.cn:8001"
   ],
   "mode": 0,
-  "TIMEOUT_JWT": 1209600
+  "TIMEOUT_JWT": 1209600,
+  "MSG_MAX": 40
 }

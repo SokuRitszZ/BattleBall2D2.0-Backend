@@ -77,6 +77,7 @@ function load(socket: typeSocket, position: { x: number; y: number }) {
   const idRoom = socket.idRoom;
   if (!idRoom) return;
   const room = mapId2Room[idRoom];
+  if (!room) return ;
   socket.user.position = position;
   ++room.cnt;
   if (room.cnt === room.sockets.length) {
