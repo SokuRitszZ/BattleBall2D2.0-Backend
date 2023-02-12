@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import random from "../../utils/random";
-import { broadCast, getAvailableRoomKeys, joinRoom, mapId2Room, packRoom, typeSocket } from "../SocketServer";
-import { exitRoom, isValidRoom } from './../SocketServer';
+import { broadCast, exitRoom, getAvailableRoomKeys, isValidRoom, joinRoom, mapId2Room, packRoom } from "../room";
+import { typeSocket } from "../SocketServer";
 
 function GameService(socket: typeSocket, paths: string[], data: any) {
   if (!paths.length) return ;
@@ -27,6 +27,9 @@ function GameService(socket: typeSocket, paths: string[], data: any) {
       handleAct(socket, data);
     }
     break;
+    case "die": {
+      someOneDie(socket);
+    }
   }
 }
 
@@ -88,6 +91,16 @@ function handleAct(socket: typeSocket, data: any) {
   const id = socket.idRoom;
   if (!id) return ;
   broadCast(id, `game:act:${socket.user.id}`, data);
+}
+
+function someOneDie(socket: typeSocket) {
+  if (!socket.idRoom) return ;
+  const room = mapId2Room[socket.idRoom];
+  if (!room) return ;
+  --room.cnt;
+  if (room.cnt <= 1) {
+    endGame(socket.idRoom!);
+  }
 }
 
 export default GameService;
