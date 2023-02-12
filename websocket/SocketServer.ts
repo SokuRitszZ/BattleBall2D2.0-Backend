@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User, { typeUser } from "../model/user/db";
+import User from "../model/user/db";
 import ChatService from "./service/ChatService";
 import { send } from ".";
 import GameService from "./service/GameService";
