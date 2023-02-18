@@ -1,10 +1,10 @@
-import express from "express";
-import path from "path";
+import express from 'express';
+import path from 'path';
 
 function useStatic() {
   return [
-    express.static(path.resolve("build/public")),
-    express.static("build/public"),
+    express.static(path.resolve('build/public')),
+    express.static('build/public'),
   ];
 }
 

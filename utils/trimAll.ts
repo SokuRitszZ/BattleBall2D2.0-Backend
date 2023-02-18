@@ -1,5 +1,5 @@
-function trimAll(strs: string[]) { 
-  return strs.map(s => s.trim());
+function trimAll(strs: string[]) {
+  return strs.map((s) => s.trim());
 }
 
 export default trimAll;

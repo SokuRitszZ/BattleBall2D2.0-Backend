@@ -1,5 +1,5 @@
-import path from "path";
+import path from 'path';
 
-const dirStatic = path.join(__dirname, "../", "public");
+const dirStatic = path.join(__dirname, '../', 'public');
 
 export default dirStatic;

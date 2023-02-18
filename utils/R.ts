@@ -8,23 +8,25 @@ class R {
     return {
       code: 0,
       data,
-    }
+    };
   }
 
   static fail(code: number, err: Error): typeR {
     return {
       code,
       msg: err.message,
-    }
+    };
   }
 }
 
-type typeR = {
-  code: 0;
-  data: any;
-} | {
-  code: number;
-  msg: string;
-};
+type typeR =
+  | {
+      code: 0;
+      data: any;
+    }
+  | {
+      code: number;
+      msg: string;
+    };
 
 export default R;

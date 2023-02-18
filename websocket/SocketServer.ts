@@ -1,14 +1,14 @@
-import jwt from "jsonwebtoken";
-import User from "../model/user/db";
-import ChatService from "./service/ChatService";
-import { send } from ".";
-import GameService from "./service/GameService";
-import { exitRoom } from "./room";
+import jwt from 'jsonwebtoken';
+import User from '../model/user/db';
+import ChatService from './service/ChatService';
+import { send } from '.';
+import GameService from './service/GameService';
+import { exitRoom } from './room';
 
 export let sockets: typeSocket[] = [];
 
 export function broadCastAll(event: string, data: any) {
-  sockets.forEach(s => send(s.conn, event, data));
+  sockets.forEach((s) => send(s.conn, event, data));
 }
 
 export default async function createSocketServer(conn: any, token: string) {
@@ -16,7 +16,7 @@ export default async function createSocketServer(conn: any, token: string) {
 
   const user = await User.findOne({
     where: { id: dataJwt.id },
-    attributes: ["id", "name", "avatar"],
+    attributes: ['id', 'name', 'avatar'],
   });
 
   if (!user) return conn.close();
@@ -27,23 +27,25 @@ export default async function createSocketServer(conn: any, token: string) {
   };
   sockets.push(socket);
 
-  conn.on("text", (msg: string) => {
+  conn.on('text', (msg: string) => {
     const { event, data } = JSON.parse(msg) as typeMessage;
-    const paths = event.split(":");
+    const paths = event.split(':');
     if (!paths.length) return;
     switch (paths[0]) {
-      case "chat": {
-        ChatService(socket, paths.slice(1), data);
-      }
-      break;
-      case "game": {
-        GameService(socket, paths.slice(1), data);
-      };
-      break;
+      case 'chat':
+        {
+          ChatService(socket, paths.slice(1), data);
+        }
+        break;
+      case 'game':
+        {
+          GameService(socket, paths.slice(1), data);
+        }
+        break;
     }
   });
 
-  conn.on("close", () => {
+  conn.on('close', () => {
     exitRoom(socket);
     sockets = sockets.filter((s) => s !== socket);
   });
@@ -60,7 +62,7 @@ export type typeSocket = {
     position?: {
       x: number;
       y: number;
-    },
+    };
   };
 };
 

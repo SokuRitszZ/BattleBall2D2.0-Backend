@@ -1,9 +1,9 @@
-import { Sequelize } from "sequelize";
-import useLogger from "../utils/useLogger";
+import { Sequelize } from 'sequelize';
+import useLogger from '../utils/useLogger';
 
 const db = new Sequelize({
-  dialect: "sqlite",
-  storage: "bg2d.db",
+  dialect: 'sqlite',
+  storage: 'bg2d.db',
   logging: useLogger(),
 });
 

@@ -1,8 +1,8 @@
-import express, { Express } from "express";
-import initController from "./controllers";
-import initMW from "./mw";
-import { PORT, mode } from "./config.json";
-const { initWS } = require("./websocket");
+import express, { Express } from 'express';
+import initController from './controllers';
+import initMW from './mw';
+import { PORT, mode } from './config.json';
+const { initWS } = require('./websocket');
 
 const server = express();
 
@@ -13,13 +13,12 @@ function init(server: Express) {
   initMW(server);
   // 然后才加载路由
   initController(server);
-  // ws 
+  // ws
   initWS();
-  
+
   server.listen(PORT[mode], async () => {
     console.log(`server listen at port ${PORT[mode]}...`);
   });
 }
-
 
 export default server;
